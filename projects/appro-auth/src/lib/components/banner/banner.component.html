@@ -1,0 +1,20 @@
+<div class="flex lg:flex-grow items-center">
+  <ul class="flex flex-col lg:gap-0 gap-7 lg:flex-row list-none ml-auto items-center">
+    <li class="nav-item mt-10 lg:mt-0">
+      <a [routerLinkActiveOptions]="{exact: true}" class="hover:text-red-800 mx-6"
+         routerLink="/" routerLinkActive="font-bold border-b-2 border-red-700">Accueil</a>
+    </li>
+    <li *ngIf="!(isLogged | async)" class="nav-item">
+      <a routerLink="/register" class="hover:text-red-800 mx-6"
+         routerLinkActive="font-bold border-b-2 border-red-700">Inscription</a>
+    </li>
+    <li *ngIf="!(isLogged | async)" class="nav-item">
+      <a
+        routerLink="/login"
+        class="bg-black text-white hover:text-black transition-colors border-2 hover:border-black py-4 px-6 hover:bg-white">Se
+        Connecter</a>
+    </li>
+    <app-nav-dropdown *ngIf="(isLogged | async)">
+    </app-nav-dropdown>
+  </ul>
+</div>

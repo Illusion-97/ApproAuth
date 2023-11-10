@@ -1,0 +1,43 @@
+<section class="flex h-full justify-center items-center container mx-auto">
+  <div class="lg:w-1/2 w-full flex flex-col items-center justify-center">
+    <h1 class="text-4xl lg:text-5xl font-bold mb-5">Reveal your <span class="text-gray-700">Identity</span>
+    </h1>
+    <form (submit)="handleLogin()" [formGroup]="form"
+          class="bg-gray-100 p-10 rounded-lg shadow-lg w-full">
+      <fieldset>
+        <legend class="my-2 text-lg font-semibold">Log as User :</legend>
+        <div class="mb-5">
+          <label class="block text-gray-700 font-medium mb-2 invalid:border-red-700" for="email">Email</label>
+          <input class="w-full border border-gray-400 p-2" formControlName="email" id="email" name="email" required
+                 type="text">
+          <span class="text-red-700">
+            <pre>{{isInvalid('email') ? "Format Invalide" : " "}}</pre>
+          </span>
+        </div>
+        <div class="mb-5">
+          <label class="block text-gray-700 font-medium mb-2" for="password">Please confirm admin pass</label>
+          <input class="w-full border border-gray-400 p-2" formControlName="password" id="password" name="password"
+                 required type="password">
+        </div>
+        <div class=" block lg:flex items-center justify-center">
+          <button
+            *ngIf="loading; else connect"
+            class="px-5 py-3 shadow-sm w-36 h-13 flex justify-center items-center bg-black transition-colors hover:bg-white text-white hover:text-black border-2 hover:border-black"
+            type="button">
+            <mat-spinner
+              [diameter]="27"
+              aria-label="Loading..."
+              color="warn"></mat-spinner>
+          </button>
+          <ng-template #connect>
+            <button
+              class="px-5 py-3 shadow-sm bg-black transition-colors hover:bg-white text-white hover:text-black border-2 hover:border-black"
+              type="submit">
+              Connexion
+            </button>
+          </ng-template>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<button
+  (mouseenter)="toogleDropdown()"
+  class=" text-white py-2 bg-black hover:bg-red-700  focus:ring-2 focus:outline-none focus:ring-red-700 px-4 text-center inline-flex items-center "
+  id="dropdownInformationButton"
+  type="button">Mon compte
+  <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+       xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+  </svg>
+</button>
+
+<!-- Dropdown menu -->
+<div
+  (mouseleave)="toogleDropdown()"
+  *ngIf="isDropdownOpen" class="z-10 absolute bg-white divide-y divide-gray-300 shadow w-40" id="dropdownInformation">
+  <div class="px-4 py-3  text-gray-900">
+    <div class="font-medium truncate">{{currentUserName | async}} 👋</div>
+  </div>
+  <ul aria-labelledby="dropdownInformationButton" class="py-2  text-gray-700 dark:text-gray-200">
+    <li>
+      <a routerLink="/dashboard" class="block text-gray-700 px-4 py-2 hover:bg-red-200 ">Dashboard</a>
+    </li>
+  </ul>
+  <button
+    (click)="logout()"
+    *ngIf="(logged | async)"
+    class="block w-full text-gray-700 px-4 py-2 hover:bg-red-200">Se Déconnecter
+  </button>
+
+</div>

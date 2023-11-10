@@ -1,0 +1,87 @@
+<section class="lg:flex justify-center block gap-5 my-20 container mx-auto">
+  <div class="lg:w-1/2 w-full">
+    <h1 class="text-4xl lg:text-5xl font-bold mb-5">Création de votre <span class="text-gray-700">Compte</span></h1>
+
+    <form (submit)="handleSubmit()" [formGroup]="form"
+          class="bg-gray-100 p-10 rounded-lg shadow-lg">
+      <fieldset>
+        <legend class="my-2 text-lg font-semibold">Entrez vos informations personnelles</legend>
+        <div class="mb-5">
+          <label class="block text-gray-700 font-medium mb-2" for="lName">Nom <sup aria-hidden="true" class="font-bold">*</sup></label>
+          <input aria-required="true" class="w-full border border-gray-400 p-2" formControlName="lastName" id="lName"
+                 name="lName" required type="text">
+        </div>
+        <div class="mb-5">
+          <label class="block text-gray-700 font-medium mb-2" for="fName">Prénom <sup aria-hidden="true"
+                                                                                      class="font-bold">*</sup></label>
+          <input aria-required="true" class="w-full border border-gray-400 p-2" formControlName="firstName" id="fName"
+                 name="fName" required type="text">
+          <span [class.text-red-700]="isInvalid('firstName')" [class.text-transparent]="!isInvalid('firstName')">
+            Le prénom est obligatoire
+          </span>
+        </div>
+
+        <div class="mb-5">
+          <label class="block text-gray-700 font-medium mb-2" for="email">Adresse email <sup aria-hidden="true"
+                                                                                             class="font-bold">*</sup></label>
+          <input aria-required="true" class="w-full border border-gray-400 p-2" formControlName="email" id="email"
+                 name="email" required type="email">
+          <span [class.text-red-700]="isInvalid('email')" [class.text-transparent]="!isInvalid('email')">
+            Format Invalide
+          </span>
+        </div>
+
+        <div class="mb-5">
+          <label class="block text-gray-700 font-medium mb-2" for="password">Mot de passe <sup aria-hidden="true"
+                                                                                               class="font-bold">*</sup></label>
+          <input class="w-full border border-gray-400 p-2" formControlName="password" id="password" name="password"
+                 required type="password">
+          <span [class.text-red-700]="isInvalid('password')" [class.text-transparent]="!isInvalid('password')">
+            Mot de passe Requis
+          </span>
+        </div>
+        <div class="mb-5">
+          <label class="block text-gray-700 font-medium mb-2" for="confirm">Confirmer votre Mot de passe <sup
+            aria-hidden="true" class="font-bold">*</sup></label>
+          <input [formControl]="confirmPasswordControl" aria-required="true" class="w-full border border-gray-400 p-2"
+                 id="confirm" name="confirm" required type="password">
+          <p class="text-red-700" *ngIf="hasError('confirmPassword', 'mustmatch')">
+            Les mots de passe ne correspondent pas
+          </p>
+          <!--<p *ngFor="let error of getError('confirmPassword')">
+            {{error | json}}
+          </p>-->
+        </div>
+
+        <div class="flex items-center justify-between">
+          <button
+            *ngIf="loading; else connect"
+            class="px-5 py-3 shadow-sm w-36 h-13 flex justify-center items-center bg-black transition-colors hover:bg-white text-white hover:text-black border-2 hover:border-black"
+            type="button">
+            <mat-spinner
+              [diameter]="27"
+              aria-label="Loading..."
+              color="warn"></mat-spinner>
+          </button>
+          <ng-template #connect>
+            <button
+              class="px-5 py-3 shadow-sm bg-black transition-colors hover:bg-white text-white hover:text-black border-2 hover:border-black"
+              type="submit">
+              Inscription
+            </button>
+          </ng-template>
+        </div>
+        <p aria-hidden="true" class="mt-2">Tous les champs avec <sup class="font-bold">*</sup> sont obligatoires.</p>
+
+
+      </fieldset>
+
+
+    </form>
+
+    <div class="mt-10">
+      <p class="text-lg font-medium">Déja un compte ?</p>
+      <a routerLink="/login" class="text-gray-700 font-medium hover:text-red-700">Par ici pour vous connecter</a>
+    </div>
+  </div>
+</section>
